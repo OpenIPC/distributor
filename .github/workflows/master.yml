@@ -1,0 +1,46 @@
+name: build
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Prepare
+        run: |
+          sudo apt-get install gcc-arm-linux-gnueabi
+          git clone https://github.com/openipc/u-boot-hi3516ev200.git
+          git clone https://github.com/openipc/u-boot-sigmastar.git
+
+      - name: u-boot-hi3516ev200
+        run: |
+          cd u-boot-hi3516ev200
+          cp -f ../scripts/u-boot-hi3516ev200.sh build.sh
+          sh build.sh
+
+      - name: u-boot-sigmastar
+        run: |
+          cd u-boot-sigmastar
+          sh build.sh
+
+      - name: Upload
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: Build
+          files: |
+            u-boot-hi3516ev200/output/u-boot-hi3516ev200-universal.bin
+            u-boot-hi3516ev200/output/u-boot-hi3516ev300-universal.bin
+            u-boot-hi3516ev200/output/u-boot-hi3518ev300-universal.bin
+            u-boot-sigmastar/output/u-boot-ssc30kq-universal.bin
+            u-boot-sigmastar/output/u-boot-ssc325-universal.bin
+            u-boot-sigmastar/output/u-boot-ssc335de-universal.bin
+            u-boot-sigmastar/output/u-boot-ssc335-universal.bin
+            u-boot-sigmastar/output/u-boot-ssc337de-universal.bin
+            u-boot-sigmastar/output/u-boot-ssc337-universal.bin
+            u-boot-sigmastar/output/u-boot-ssc338q-initramfs.bin
+            u-boot-sigmastar/output/u-boot-ssc338q-spinand.bin
