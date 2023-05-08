@@ -3,11 +3,11 @@
 export CROSS_COMPILE=arm-linux-gnueabi-
 mkdir -p output
 
-for soc in hi3516ev200 hi3516ev300 hi3518ev300; do
+for soc in hi3516av300 hi3516cv500 hi3516dv300; do
 
 make clean
-cp config-${soc} .config
-cp reg_info_${soc}.bin .reg
+make ${soc}_smp_defconfig
+cp reginfo-${soc}.bin .reg
 make -j8
 
 make SHELL=/bin/bash -C tools/hi_gzip

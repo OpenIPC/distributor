@@ -1,4 +1,4 @@
-name: build
+name: Build
 on:
   push:
     branches:
@@ -14,8 +14,31 @@ jobs:
       - name: Prepare
         run: |
           sudo apt-get install gcc-arm-linux-gnueabi
+          git clone https://github.com/openipc/u-boot-hi3516av100.git
+          git clone https://github.com/openipc/u-boot-hi3516cv300.git
+          git clone https://github.com/openipc/u-boot-hi3516cv500.git
           git clone https://github.com/openipc/u-boot-hi3516ev200.git
           git clone https://github.com/openipc/u-boot-sigmastar.git
+
+      - name: u-boot-hi3516av100
+        run: |
+          cd u-boot-hi3516av100
+          git apply ../patches/u-boot-hi3516av100.patch
+          cp -f ../scripts/u-boot-hi3516av100.sh build.sh
+          sh build.sh
+
+      - name: u-boot-hi3516cv300
+        run: |
+          cd u-boot-hi3516cv300
+          git apply ../patches/u-boot-hi3516cv300.patch
+          cp -f ../scripts/u-boot-hi3516cv300.sh build.sh
+          sh build.sh
+
+      - name: u-boot-hi3516cv500
+        run: |
+          cd u-boot-hi3516cv500
+          cp -f ../scripts/u-boot-hi3516cv500.sh build.sh
+          sh build.sh
 
       - name: u-boot-hi3516ev200
         run: |
@@ -33,6 +56,13 @@ jobs:
         with:
           tag_name: Build
           files: |
+            u-boot-hi3516av100/output/u-boot-hi3516av100-universal.bin
+            u-boot-hi3516av100/output/u-boot-hi3516dv100-universal.bin
+            u-boot-hi3516cv300/output/u-boot-hi3516cv300-universal.bin
+            u-boot-hi3516cv300/output/u-boot-hi3516ev100-universal.bin
+            u-boot-hi3516cv500/output/u-boot-hi3516av300-universal.bin
+            u-boot-hi3516cv500/output/u-boot-hi3516cv500-universal.bin
+            u-boot-hi3516cv500/output/u-boot-hi3516dv300-universal.bin
             u-boot-hi3516ev200/output/u-boot-hi3516ev200-universal.bin
             u-boot-hi3516ev200/output/u-boot-hi3516ev300-universal.bin
             u-boot-hi3516ev200/output/u-boot-hi3518ev300-universal.bin
@@ -42,5 +72,5 @@ jobs:
             u-boot-sigmastar/output/u-boot-ssc335-universal.bin
             u-boot-sigmastar/output/u-boot-ssc337de-universal.bin
             u-boot-sigmastar/output/u-boot-ssc337-universal.bin
-            u-boot-sigmastar/output/u-boot-ssc338q-initramfs.bin
-            u-boot-sigmastar/output/u-boot-ssc338q-spinand.bin
+            u-boot-sigmastar/output/u-boot-ssc338q-ramfs.bin
+            u-boot-sigmastar/output/u-boot-ssc338q-nand.bin
