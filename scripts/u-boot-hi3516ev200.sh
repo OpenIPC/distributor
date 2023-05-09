@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 export CROSS_COMPILE=arm-linux-gnueabi-
 mkdir -p output

@@ -13,11 +13,12 @@ jobs:
 
       - name: Prepare
         run: |
-          sudo apt-get install gcc-arm-linux-gnueabi
+          sudo apt-get install gcc-arm-linux-gnueabi gcc-mipsel-linux-gnu
           git clone https://github.com/openipc/u-boot-hi3516av100.git
           git clone https://github.com/openipc/u-boot-hi3516cv300.git
           git clone https://github.com/openipc/u-boot-hi3516cv500.git
           git clone https://github.com/openipc/u-boot-hi3516ev200.git
+          git clone https://github.com/openipc/u-boot-ingenic.git
           git clone https://github.com/openipc/u-boot-sigmastar.git
 
       - name: u-boot-hi3516av100
@@ -25,31 +26,37 @@ jobs:
           cd u-boot-hi3516av100
           git apply ../patches/u-boot-hi3516av100.patch
           cp -f ../scripts/u-boot-hi3516av100.sh build.sh
-          sh build.sh
+          bash build.sh
 
       - name: u-boot-hi3516cv300
         run: |
           cd u-boot-hi3516cv300
           git apply ../patches/u-boot-hi3516cv300.patch
           cp -f ../scripts/u-boot-hi3516cv300.sh build.sh
-          sh build.sh
+          bash build.sh
 
       - name: u-boot-hi3516cv500
         run: |
           cd u-boot-hi3516cv500
           cp -f ../scripts/u-boot-hi3516cv500.sh build.sh
-          sh build.sh
+          bash build.sh
 
       - name: u-boot-hi3516ev200
         run: |
           cd u-boot-hi3516ev200
           cp -f ../scripts/u-boot-hi3516ev200.sh build.sh
-          sh build.sh
+          bash build.sh
+
+      - name: u-boot-ingenic
+        run: |
+          cd u-boot-ingenic
+          cp -f ../scripts/u-boot-ingenic.sh build.sh
+          bash build.sh
 
       - name: u-boot-sigmastar
         run: |
           cd u-boot-sigmastar
-          sh build.sh
+          bash build.sh
 
       - name: Upload
         uses: softprops/action-gh-release@v1
@@ -66,6 +73,21 @@ jobs:
             u-boot-hi3516ev200/output/u-boot-hi3516ev200-universal.bin
             u-boot-hi3516ev200/output/u-boot-hi3516ev300-universal.bin
             u-boot-hi3516ev200/output/u-boot-hi3518ev300-universal.bin
+            u-boot-ingenic/output/u-boot-t10l-universal.bin
+            u-boot-ingenic/output/u-boot-t10-universal.bin
+            u-boot-ingenic/output/u-boot-t20l-universal.bin
+            u-boot-ingenic/output/u-boot-t20-universal.bin
+            u-boot-ingenic/output/u-boot-t21n-universal.bin
+            u-boot-ingenic/output/u-boot-t30a1-universal.bin
+            u-boot-ingenic/output/u-boot-t30a-universal.bin
+            u-boot-ingenic/output/u-boot-t30l-universal.bin
+            u-boot-ingenic/output/u-boot-t30n-universal.bin
+            u-boot-ingenic/output/u-boot-t30x-universal.bin
+            u-boot-ingenic/output/u-boot-t31al-universal.bin
+            u-boot-ingenic/output/u-boot-t31a-universal.bin
+            u-boot-ingenic/output/u-boot-t31l-universal.bin
+            u-boot-ingenic/output/u-boot-t31n-universal.bin
+            u-boot-ingenic/output/u-boot-t31x-universal.bin
             u-boot-sigmastar/output/u-boot-ssc30kq-universal.bin
             u-boot-sigmastar/output/u-boot-ssc325-universal.bin
             u-boot-sigmastar/output/u-boot-ssc335de-universal.bin
