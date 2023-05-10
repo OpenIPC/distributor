@@ -15,6 +15,7 @@ jobs:
         run: |
           sudo apt-get install gcc-arm-linux-gnueabi gcc-mipsel-linux-gnu
           git clone https://github.com/openipc/u-boot-hi3516av100.git
+          git clone https://github.com/openipc/u-boot-hi3516cv200.git
           git clone https://github.com/openipc/u-boot-hi3516cv300.git
           git clone https://github.com/openipc/u-boot-hi3516cv500.git
           git clone https://github.com/openipc/u-boot-hi3516ev200.git
@@ -26,6 +27,13 @@ jobs:
           cd u-boot-hi3516av100
           git apply ../patches/u-boot-hi3516av100.patch
           cp -f ../scripts/u-boot-hi3516av100.sh build.sh
+          bash build.sh
+
+      - name: u-boot-hi3516cv200
+        run: |
+          cd u-boot-hi3516cv200
+          git apply ../patches/u-boot-hi3516cv200.patch
+          cp -f ../scripts/u-boot-hi3516cv200.sh build.sh
           bash build.sh
 
       - name: u-boot-hi3516cv300
@@ -65,6 +73,8 @@ jobs:
           files: |
             u-boot-hi3516av100/output/u-boot-hi3516av100-universal.bin
             u-boot-hi3516av100/output/u-boot-hi3516dv100-universal.bin
+            u-boot-hi3516cv200/output/u-boot-hi3516cv200-universal.bin
+            u-boot-hi3516cv200/output/u-boot-hi3518ev200-universal.bin
             u-boot-hi3516cv300/output/u-boot-hi3516cv300-universal.bin
             u-boot-hi3516cv300/output/u-boot-hi3516ev100-universal.bin
             u-boot-hi3516cv500/output/u-boot-hi3516av300-universal.bin
