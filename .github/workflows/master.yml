@@ -20,6 +20,7 @@ jobs:
           git clone https://github.com/openipc/u-boot-hi3516cv500.git
           git clone https://github.com/openipc/u-boot-hi3516ev200.git
           git clone https://github.com/openipc/u-boot-ingenic.git
+          git clone https://github.com/openipc/u-boot-msc313e.git
           git clone https://github.com/openipc/u-boot-sigmastar.git
 
       - name: u-boot-hi3516av100
@@ -61,6 +62,12 @@ jobs:
           cp -f ../scripts/u-boot-ingenic.sh build.sh
           bash build.sh
 
+      - name: u-boot-msc313e
+        run: |
+          cd u-boot-msc313e
+          cp -f ../scripts/u-boot-msc313e.sh build.sh
+          bash build.sh
+
       - name: u-boot-sigmastar
         run: |
           cd u-boot-sigmastar
@@ -98,6 +105,8 @@ jobs:
             u-boot-ingenic/output/u-boot-t31l-universal.bin
             u-boot-ingenic/output/u-boot-t31n-universal.bin
             u-boot-ingenic/output/u-boot-t31x-universal.bin
+            u-boot-msc313e/output/u-boot-msc313x-universal.bin
+            u-boot-msc313e/output/u-boot-msc316x-universal.bin
             u-boot-sigmastar/output/u-boot-ssc30kq-universal.bin
             u-boot-sigmastar/output/u-boot-ssc325-universal.bin
             u-boot-sigmastar/output/u-boot-ssc335de-universal.bin
