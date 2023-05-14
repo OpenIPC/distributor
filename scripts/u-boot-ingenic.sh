@@ -19,7 +19,7 @@ cfg[t30x]="isvp_t30_sfcnor_ddr128M"
 cfg[t30a]="isvp_t30a_sfcnor_ddr128M"
 cfg[t30a1]="isvp_t30a1_sfcnor_ddr128M"
 
-sed -i "s|#include gcc_header(__GNUC__)||" include/linux/compiler-gcc.h
+ln -s compiler-gcc7.h include/linux/compiler-gcc10.h
 mkdir -p ../ingenic-output
 
 for soc in ${!cfg[@]}; do
