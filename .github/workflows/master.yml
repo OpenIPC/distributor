@@ -13,6 +13,7 @@ jobs:
 
       - name: Prepare
         run: |
+          sudo apt-get update
           sudo apt-get install gcc-arm-linux-gnueabi gcc-mipsel-linux-gnu
           git clone https://github.com/openipc/u-boot-hi3516av100.git
           git clone https://github.com/openipc/u-boot-hi3516cv200.git
