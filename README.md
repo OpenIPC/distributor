@@ -4,7 +4,7 @@
 
 [![Telegram](https://openipc.org/images/telegram_button.svg)][telegram]
 
-**Experimental continuous integration for uboot on OpenIPC supported cameras.**
+**Experimental continuous integration for U-Boot on OpenIPC supported cameras.**
 
 ---
 
