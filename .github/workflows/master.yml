@@ -115,5 +115,6 @@ jobs:
             u-boot-sigmastar/output/u-boot-ssc335-universal.bin
             u-boot-sigmastar/output/u-boot-ssc337de-universal.bin
             u-boot-sigmastar/output/u-boot-ssc337-universal.bin
-            u-boot-sigmastar/output/u-boot-ssc338q-ramfs.bin
-            u-boot-sigmastar/output/u-boot-ssc338q-nand.bin
+            u-boot-sigmastar/output/u-boot-ssc338q-initramfs.bin
+            u-boot-sigmastar/output/u-boot-ssc338q-spinand.bin
+            u-boot-sigmastar/output/u-boot-ssc338q-universal.bin
