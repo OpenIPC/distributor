@@ -5,6 +5,9 @@ on:
       - master
   workflow_dispatch:
 
+env:
+  TAG_NAME: latest
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,17 +19,17 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install gcc-arm-linux-gnueabi gcc-mipsel-linux-gnu
-          git clone https://github.com/openipc/u-boot-hi3516av100.git
-          git clone https://github.com/openipc/u-boot-hi3516cv200.git
-          git clone https://github.com/openipc/u-boot-hi3516cv300.git
-          git clone https://github.com/openipc/u-boot-hi3516cv500.git
-          git clone https://github.com/openipc/u-boot-hi3516ev200.git
-          git clone https://github.com/openipc/u-boot-ingenic.git
-          git clone https://github.com/openipc/u-boot-msc313e.git
-          git clone https://github.com/openipc/u-boot-sigmastar.git
+
+      - name: u-boot-gk7205v200
+        if: false
+        run: |
+          git clone https://github.com/openipc/u-boot-gk7205v200.git --depth=1
+          cd u-boot-gk7205v200
+          bash build.sh
 
       - name: u-boot-hi3516av100
         run: |
+          git clone https://github.com/openipc/u-boot-hi3516av100.git --depth=1
           cd u-boot-hi3516av100
           git apply ../patches/u-boot-hi3516av100.patch
           cp -f ../scripts/u-boot-hi3516av100.sh build.sh
@@ -34,6 +37,7 @@ jobs:
 
       - name: u-boot-hi3516cv200
         run: |
+          git clone https://github.com/openipc/u-boot-hi3516cv200.git --depth=1
           cd u-boot-hi3516cv200
           git apply ../patches/u-boot-hi3516cv200.patch
           cp -f ../scripts/u-boot-hi3516cv200.sh build.sh
@@ -41,6 +45,7 @@ jobs:
 
       - name: u-boot-hi3516cv300
         run: |
+          git clone https://github.com/openipc/u-boot-hi3516cv300.git --depth=1
           cd u-boot-hi3516cv300
           git apply ../patches/u-boot-hi3516cv300.patch
           cp -f ../scripts/u-boot-hi3516cv300.sh build.sh
@@ -48,38 +53,47 @@ jobs:
 
       - name: u-boot-hi3516cv500
         run: |
+          git clone https://github.com/openipc/u-boot-hi3516cv500.git --depth=1
           cd u-boot-hi3516cv500
           cp -f ../scripts/u-boot-hi3516cv500.sh build.sh
           bash build.sh
 
       - name: u-boot-hi3516ev200
         run: |
+          git clone https://github.com/openipc/u-boot-hi3516ev200.git --depth=1
           cd u-boot-hi3516ev200
           cp -f ../scripts/u-boot-hi3516ev200.sh build.sh
           bash build.sh
 
       - name: u-boot-ingenic
         run: |
+          git clone https://github.com/openipc/u-boot-ingenic.git --depth=1
           cd u-boot-ingenic
           cp -f ../scripts/u-boot-ingenic.sh build.sh
           bash build.sh
 
       - name: u-boot-msc313e
         run: |
+          git clone https://github.com/openipc/u-boot-msc313e.git --depth=1
           cd u-boot-msc313e
           cp -f ../scripts/u-boot-msc313e.sh build.sh
           bash build.sh
 
       - name: u-boot-sigmastar
         run: |
+          git clone https://github.com/openipc/u-boot-sigmastar.git --depth=1
           cd u-boot-sigmastar
           bash build.sh
 
       - name: Upload
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: Build
+          tag_name: ${{env.TAG_NAME}}
           files: |
+            u-boot-gk7205v200/output/u-boot-gk7202v300-universal.bin
+            u-boot-gk7205v200/output/u-boot-gk7205v200-universal.bin
+            u-boot-gk7205v200/output/u-boot-gk7205v300-universal.bin
+            u-boot-gk7205v200/output/u-boot-gk7605v100-universal.bin
             u-boot-hi3516av100/output/u-boot-hi3516av100-universal.bin
             u-boot-hi3516av100/output/u-boot-hi3516dv100-universal.bin
             u-boot-hi3516cv200/output/u-boot-hi3516cv200-universal.bin
