@@ -20,13 +20,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install gcc-arm-linux-gnueabi gcc-mipsel-linux-gnu
 
-      - name: u-boot-gk7205v200
-        if: false
-        run: |
-          git clone https://github.com/openipc/u-boot-gk7205v200.git --depth=1
-          cd u-boot-gk7205v200
-          bash build.sh
-
       - name: u-boot-hi3516av100
         run: |
           git clone https://github.com/openipc/u-boot-hi3516av100.git --depth=1
@@ -90,10 +83,6 @@ jobs:
         with:
           tag_name: ${{env.TAG_NAME}}
           files: |
-            u-boot-gk7205v200/output/u-boot-gk7202v300-universal.bin
-            u-boot-gk7205v200/output/u-boot-gk7205v200-universal.bin
-            u-boot-gk7205v200/output/u-boot-gk7205v300-universal.bin
-            u-boot-gk7205v200/output/u-boot-gk7605v100-universal.bin
             u-boot-hi3516av100/output/u-boot-hi3516av100-universal.bin
             u-boot-hi3516av100/output/u-boot-hi3516dv100-universal.bin
             u-boot-hi3516cv200/output/u-boot-hi3516cv200-universal.bin
@@ -129,6 +118,6 @@ jobs:
             u-boot-sigmastar/output/u-boot-ssc335-nor.bin
             u-boot-sigmastar/output/u-boot-ssc337de-nor.bin
             u-boot-sigmastar/output/u-boot-ssc337-nor.bin
-            u-boot-sigmastar/output/u-boot-ssc338q-ram.bin
             u-boot-sigmastar/output/u-boot-ssc338q-nand.bin
             u-boot-sigmastar/output/u-boot-ssc338q-nor.bin
+            u-boot-sigmastar/output/u-boot-ssc338q-ram.bin
