@@ -112,6 +112,7 @@ jobs:
             u-boot-ingenic/output/u-boot-t31x-universal.bin
             u-boot-msc313e/output/u-boot-msc313x-universal.bin
             u-boot-msc313e/output/u-boot-msc316x-universal.bin
+            u-boot-sigmastar/output/u-boot-ssc30kd-nor.bin
             u-boot-sigmastar/output/u-boot-ssc30kq-nor.bin
             u-boot-sigmastar/output/u-boot-ssc325-nor.bin
             u-boot-sigmastar/output/u-boot-ssc335de-nor.bin
