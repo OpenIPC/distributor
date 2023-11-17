@@ -28,6 +28,14 @@ jobs:
           cp -f ../scripts/u-boot-hi3516av100.sh build.sh
           bash build.sh
 
+      - name: u-boot-hi3516cv100
+        run: |
+          git clone https://github.com/openipc/u-boot-hi3516cv100.git --depth=1
+          cd u-boot-hi3516cv100
+          git apply ../patches/u-boot-hi3516cv100.patch
+          cp -f ../scripts/u-boot-hi3516cv100.sh build.sh
+          bash build.sh
+
       - name: u-boot-hi3516cv200
         run: |
           git clone https://github.com/openipc/u-boot-hi3516cv200.git --depth=1
@@ -85,6 +93,9 @@ jobs:
           files: |
             u-boot-hi3516av100/output/u-boot-hi3516av100-universal.bin
             u-boot-hi3516av100/output/u-boot-hi3516dv100-universal.bin
+            u-boot-hi3516cv100/output/u-boot-hi3516cv100-universal.bin
+            u-boot-hi3516cv100/output/u-boot-hi3518cv100-universal.bin
+            u-boot-hi3516cv100/output/u-boot-hi3518ev100-universal.bin
             u-boot-hi3516cv200/output/u-boot-hi3516cv200-universal.bin
             u-boot-hi3516cv200/output/u-boot-hi3518ev200-universal.bin
             u-boot-hi3516cv300/output/u-boot-hi3516cv300-universal.bin

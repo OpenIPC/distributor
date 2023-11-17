@@ -1,0 +1,169 @@
+diff --git a/arch/arm/lib/board.c b/arch/arm/lib/board.c
+index 8ee3847..70fb245 100644
+--- a/arch/arm/lib/board.c
++++ b/arch/arm/lib/board.c
+@@ -104,23 +104,23 @@ extern int check_ddr_training(void);
+  ************************************************************************
+  * May be supplied by boards if desired
+  */
+-void inline __coloured_LED_init (void) {}
++void __coloured_LED_init (void) {}
+ void coloured_LED_init (void) __attribute__((weak, alias("__coloured_LED_init")));
+-void inline __red_LED_on (void) {}
++void __red_LED_on (void) {}
+ void red_LED_on (void) __attribute__((weak, alias("__red_LED_on")));
+-void inline __red_LED_off(void) {}
++void __red_LED_off(void) {}
+ void red_LED_off(void) __attribute__((weak, alias("__red_LED_off")));
+-void inline __green_LED_on(void) {}
++void __green_LED_on(void) {}
+ void green_LED_on(void) __attribute__((weak, alias("__green_LED_on")));
+-void inline __green_LED_off(void) {}
++void __green_LED_off(void) {}
+ void green_LED_off(void) __attribute__((weak, alias("__green_LED_off")));
+-void inline __yellow_LED_on(void) {}
++void __yellow_LED_on(void) {}
+ void yellow_LED_on(void) __attribute__((weak, alias("__yellow_LED_on")));
+-void inline __yellow_LED_off(void) {}
++void __yellow_LED_off(void) {}
+ void yellow_LED_off(void) __attribute__((weak, alias("__yellow_LED_off")));
+-void inline __blue_LED_on(void) {}
++void __blue_LED_on(void) {}
+ void blue_LED_on(void) __attribute__((weak, alias("__blue_LED_on")));
+-void inline __blue_LED_off(void) {}
++void __blue_LED_off(void) {}
+ void blue_LED_off(void) __attribute__((weak, alias("__blue_LED_off")));
+ 
+ /************************************************************************
+diff --git a/common/main.c b/common/main.c
+index 71eedbf..1fed120 100644
+--- a/common/main.c
++++ b/common/main.c
+@@ -48,7 +48,7 @@ DECLARE_GLOBAL_DATA_PTR;
+ /*
+  * Board-specific Platform code can reimplement show_boot_progress () if needed
+  */
+-void inline __show_boot_progress (int val) {}
++void __show_boot_progress (int val) {}
+ void show_boot_progress (int val) __attribute__((weak, alias("__show_boot_progress")));
+ 
+ #if defined(CONFIG_BOOT_RETRY_TIME) && defined(CONFIG_RESET_TO_RETRY)
+diff --git a/include/configs/hi3516c.h b/include/configs/hi3516c.h
+index 4221c41..36c505a 100644
+--- a/include/configs/hi3516c.h
++++ b/include/configs/hi3516c.h
+@@ -261,7 +261,7 @@
+ /*-----------------------------------------------------------------------
+  * sdcard/usb storage system update
+  * ----------------------------------------------------------------------*/
+-/* #define CONFIG_AUTO_UPDATE			1 */
++#define CONFIG_AUTO_UPDATE			1
+ #ifdef CONFIG_AUTO_UPDATE
+ 	#define CONFIG_AUTO_SD_UPDATE		1
+ 	#define CONFIG_AUTO_USB_UPDATE		1
+diff --git a/include/configs/hi3518c.h b/include/configs/hi3518c.h
+index c178521..0471997 100644
+--- a/include/configs/hi3518c.h
++++ b/include/configs/hi3518c.h
+@@ -240,7 +240,7 @@
+ /*-----------------------------------------------------------------------
+  * sdcard/usb storage system update
+  * ----------------------------------------------------------------------*/
+-/* #define CONFIG_AUTO_UPDATE			1 */
++#define CONFIG_AUTO_UPDATE			1
+ #ifdef CONFIG_AUTO_UPDATE
+ 	#define CONFIG_AUTO_SD_UPDATE		1
+ 	#define CONFIG_AUTO_USB_UPDATE		1
+diff --git a/include/configs/hi3518e.h b/include/configs/hi3518e.h
+index 27b6045..51c9fbf 100644
+--- a/include/configs/hi3518e.h
++++ b/include/configs/hi3518e.h
+@@ -240,7 +240,7 @@
+ /*-----------------------------------------------------------------------
+  * sdcard/usb storage system update
+  * ----------------------------------------------------------------------*/
+-/* #define CONFIG_AUTO_UPDATE			1 */
++#define CONFIG_AUTO_UPDATE			1
+ #ifdef CONFIG_AUTO_UPDATE
+ 	#define CONFIG_AUTO_SD_UPDATE		1
+ 	#define CONFIG_AUTO_USB_UPDATE		1
+diff --git a/lib/time.c b/lib/time.c
+index a309c26..60ea897 100644
+--- a/lib/time.c
++++ b/lib/time.c
+@@ -41,3 +41,9 @@ void udelay(unsigned long usec)
+ 		usec -= kv;
+ 	} while(usec);
+ }
++
++void wait_ms(unsigned long msec)
++{
++	while (msec--)
++		udelay(1000);
++}
+diff --git a/reg_info_hi3516cv100.reg b/reg_info_hi3516cv100.reg
+new file mode 100644
+index 0000000000000000000000000000000000000000..c9bbfc8b349fcd3f0aaedcc61b8799c96584888d
+GIT binary patch
+literal 4096
+zcmeIzF=!J}7zgk#?Ij*1ZLi_Ph*8d3F++w>Gi2zHLWd3x87g$BAW^h~ibDs74k<(s
+zDp=6L!NI{nN(ToA2f+>w4h{|u3JwYm862ckaH!P(_wL^1<?rrv2g&vKzVCbY-uLK5
+zWHb_yDSYG)J|29lzN$3#<9Nxs2w#cT(|ADjA=O85{DiHafxoo|^;I}9v&GNr!;^_c
+zPKw4Y&sJr~`F8AFlA!iPg6*+*;1X`3<Rj@GnkjXE0wc#<N6q)ZcwV_8Q;`&;t0B#g
+z;JZguv6nTz)ta>qVEcT{ufem)fV!pmGMKLo`(x)j7&G%P!Kbfx4y{+<y<Z3EdUs$<
+zH)`Yiv6abrnfX)WC?iF1&J5ve5XasF&nrb3?BZkUHLlCG`9;L-evmIdJTl!gL%N?b
+zd{L&g+|*a#`SDHDQqwPZqj@G>Zw)>rvS;%f@WX2laFTI-6W)}0rI~LImhD_%-OHDv
+zn<g5^TZq?>#RK}h1-RhE7h&J=F6uWX2KiDLw)R7t-^Yq|KHk5ccgHzz?T0x1sLN#9
+zuW{5j$W8JbxkX+eFOn~i+vFwkGI@o3nS7PJ>Nt=6-5}p~tovUh-yt`0!~J@SILgeW
+z^FJd$C-0D7kl&HtlRuC@l0T8ZkiU|@ll$Z!<e!eUU;B=A|G&uxjx}G<KfURt_Q(<P
+z?f<XNH$$$HYh>S<PwR_p$`8mPIiUKGTqak@g88rvbLo24$sRqgOYV{Hk?)hY9P97H
+zBl2U%x}GQGm*iLE*W_Jt6Z^O4r|0_?aoo(M&l4|9<9WPAyE1J2;zgRK?=!tLZvMcR
+z=G(Y^-~UrTB62(_(D$JSyYEvUe&fW8@Mp&X96Ao+3CCsFoi7Pxx2ywM2eJ-i9mqP6
+Jb>KgC;4e_Wmq-8r
+
+literal 0
+HcmV?d00001
+
+diff --git a/reg_info_hi3518cv100.reg b/reg_info_hi3518cv100.reg
+new file mode 100644
+index 0000000000000000000000000000000000000000..c6477ebb073a974ae49875ab3a7ca56e43a45da0
+GIT binary patch
+literal 4096
+zcmeIzziSg=7zgkt_7V?C+iN&6Vw9IyX@(3zGi2y+LWd3x87g$>AhBo%6$b~04p)dE
+zw4k7aphE`-ks=Nb4h|i3_HS_OC`Cu9-{-x1FK@o?PIqu=KleP(`{Q|=tH_KIkp<lH
+z2X_EJ=xr&j!z|u#uEV#@b`g)LK882FdXvR3xcWu-M>47Jz>ys-o9_so&n<FMH12q%
+zBU7#pGgtBibu3jQ>4_ae_aktS$Ip^6ezPSDMrx93Nb?Q+<g_aDy2kgDtIiSZ=F|Kx
+z+|D1U6U~>&ctbcmb8UoYcKkKi+#Q`bZ@|aDzZX7$G2D!c|H`b)&&Q5m7)NIm(UN_H
+zk4YSRkAk3K@G!+~>ou;+b@_F~-F}cSq2{;8_L1(V3Ez~qmfQLke0_G;w$%0u-Wgmj
+z*4u?Ii5$E9KK$a&Gn`yjKY(AOOU}!%yst#g<7&g)x6v#=LA-Y^d!X~Jz%?(v3WuH#
+zQNJ@c$(P!+wIAB-Bdl1*<NfP-kG%8de)MF%=+`Xj`{V(6nVgVU$gAWV<RN*DyiVRA
+z-y(04w>(#|zkB3|o^}6^$dAeW%5=Z>5l5N5bo{sEcjN=|NAgeD{r&2CjAtExk=!A7
+z$syK@GJ9!#olW@>IVML`ACsHp7FjS}wi^9*ifoeunlB}f$xq39<maCCefg67%CoNL
+z4fzxKGx-bokUYTt{qy{aIHs|e&L=@!#H)C#q%v*%2QZqZ-*3G%Zhygt=DWCi|NT>c
+zO5}WApzntO_TMid{K1RY;cuQJIQAUFbDo>9KVBXxf0P|4J5Y9@>_FLpvIAuY{#ytB
+E0^?<fJ^%m!
+
+literal 0
+HcmV?d00001
+
+diff --git a/reg_info_hi3518ev100.reg b/reg_info_hi3518ev100.reg
+new file mode 100644
+index 0000000000000000000000000000000000000000..37ef24428b6be967680aafd6d1ea343819da7e77
+GIT binary patch
+literal 4096
+zcmeIzp>Gpm7zXgS><*fxW4ES|CKPfRBUDtBP*E{aF)=YwG04OONf$Cf2m*na=t#u`
+zA%q|%5EBSOCJ+b&Vgi9cAP@)=AVEwn3lcJ(=llA#*N5;Q+$CN2>+`-}`@MI)noXr<
+zHiw7(!6Sn2HaAJ<qR-30CAgPvjq*hLEAU39KlS;A(7yox=#2a8aN<_;?{^5#4sCYP
+zm<L{|+l1q;cVSpSS1eAgf8v(lehiL=`8hGxuhwiXwb=TMSf9d!GnDrl^Sx#-xB<_*
+z)aM=MHtz4j(=$ugL;Wgz{$}qacpW}I`Zn@DjL$z6@?YNM@O-%SN5-j2iR7w#34g{p
+z_L@XdImL^8JX}9>&L`BDkcWAp-kR_!7USUli}d`!mC#lAhWQ=SHTYpWj`6Rb7rfoR
+zJo@|%_>$Ri$XoE^+fSRpZFtu@r0ZXV?NuQO9>nF;T`a@AgS<D*)YmVuet7WnEQ?pf
+z2Uu_WtZ!hwot`x3#glP}9WdAV@cduPoPW;8GV^ik7rC(Sck5@|wAs<TXHe4;x5bO%
+zj(ADDEM5_J#jD~q@w)hyctgCIF)xZc;(Hl$|M$fY#I3^Qy!Mcz%^h6-h4`g-U;JA9
+z0S?zc*ZU~`B>pV^BK|7=E<S?8_lxiMTl`b%Q}KehE^dg6nfdYkN@}T3#1(NO{S|Rl
+zToaqDw<V6meepoNBYq@)k}>c1&&0bKb3V_-Z^UoK@5Be<c4q&)-rq}ZQDuDn;rFa>
+vlg2MtiZ*vY;xltT^N3L&@^C-@x1Tlnkxw9>Kt6$d0{H~;3FH&_{{;R5P)?3F
+
+literal 0
+HcmV?d00001
+
