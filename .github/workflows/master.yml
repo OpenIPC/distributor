@@ -22,7 +22,7 @@ jobs:
 
       - name: u-boot-hi3516av100
         run: |
-          git clone https://github.com/openipc/u-boot-hi3516av100.git --depth=1
+          git clone https://github.com/openipc/u-boot-hi3516av100.git --depth 1
           cd u-boot-hi3516av100
           git apply ../patches/u-boot-hi3516av100.patch
           cp -f ../scripts/u-boot-hi3516av100.sh build.sh
@@ -30,7 +30,7 @@ jobs:
 
       - name: u-boot-hi3516cv100
         run: |
-          git clone https://github.com/openipc/u-boot-hi3516cv100.git --depth=1
+          git clone https://github.com/openipc/u-boot-hi3516cv100.git --depth 1
           cd u-boot-hi3516cv100
           git apply ../patches/u-boot-hi3516cv100.patch
           cp -f ../scripts/u-boot-hi3516cv100.sh build.sh
@@ -38,7 +38,7 @@ jobs:
 
       - name: u-boot-hi3516cv200
         run: |
-          git clone https://github.com/openipc/u-boot-hi3516cv200.git --depth=1
+          git clone https://github.com/openipc/u-boot-hi3516cv200.git --depth 1
           cd u-boot-hi3516cv200
           git apply ../patches/u-boot-hi3516cv200.patch
           cp -f ../scripts/u-boot-hi3516cv200.sh build.sh
@@ -46,7 +46,7 @@ jobs:
 
       - name: u-boot-hi3516cv300
         run: |
-          git clone https://github.com/openipc/u-boot-hi3516cv300.git --depth=1
+          git clone https://github.com/openipc/u-boot-hi3516cv300.git --depth 1
           cd u-boot-hi3516cv300
           git apply ../patches/u-boot-hi3516cv300.patch
           cp -f ../scripts/u-boot-hi3516cv300.sh build.sh
@@ -54,35 +54,35 @@ jobs:
 
       - name: u-boot-hi3516cv500
         run: |
-          git clone https://github.com/openipc/u-boot-hi3516cv500.git --depth=1
+          git clone https://github.com/openipc/u-boot-hi3516cv500.git --depth 1
           cd u-boot-hi3516cv500
           cp -f ../scripts/u-boot-hi3516cv500.sh build.sh
           bash build.sh
 
       - name: u-boot-hi3516ev200
         run: |
-          git clone https://github.com/openipc/u-boot-hi3516ev200.git --depth=1
+          git clone https://github.com/openipc/u-boot-hi3516ev200.git --depth 1
           cd u-boot-hi3516ev200
           cp -f ../scripts/u-boot-hi3516ev200.sh build.sh
           bash build.sh
 
       - name: u-boot-ingenic
         run: |
-          git clone https://github.com/openipc/u-boot-ingenic.git --depth=1
+          git clone https://github.com/openipc/u-boot-ingenic.git --depth 1
           cd u-boot-ingenic
           cp -f ../scripts/u-boot-ingenic.sh build.sh
           bash build.sh
 
       - name: u-boot-msc313e
         run: |
-          git clone https://github.com/openipc/u-boot-msc313e.git --depth=1
+          git clone https://github.com/openipc/u-boot-msc313e.git --depth 1
           cd u-boot-msc313e
           cp -f ../scripts/u-boot-msc313e.sh build.sh
           bash build.sh
 
       - name: u-boot-sigmastar
         run: |
-          git clone https://github.com/openipc/u-boot-sigmastar.git --depth=1
+          git clone https://github.com/openipc/u-boot-sigmastar.git --depth 1
           cd u-boot-sigmastar
           bash build.sh
 
@@ -127,11 +127,14 @@ jobs:
             u-boot-sigmastar/output/u-boot-ssc30kd-nor.bin
             u-boot-sigmastar/output/u-boot-ssc30kq-nor.bin
             u-boot-sigmastar/output/u-boot-ssc325-nor.bin
+            u-boot-sigmastar/output/u-boot-ssc325de-nand.bin
             u-boot-sigmastar/output/u-boot-ssc333-nor.bin
             u-boot-sigmastar/output/u-boot-ssc335de-nor.bin
             u-boot-sigmastar/output/u-boot-ssc335-nor.bin
             u-boot-sigmastar/output/u-boot-ssc337de-nor.bin
+            u-boot-sigmastar/output/u-boot-ssc337de-nand.bin
             u-boot-sigmastar/output/u-boot-ssc337-nor.bin
             u-boot-sigmastar/output/u-boot-ssc338q-nand.bin
             u-boot-sigmastar/output/u-boot-ssc338q-nor.bin
             u-boot-sigmastar/output/u-boot-ssc338q-ram.bin
+            u-boot-sigmastar/output/u-boot-ssc377-nor.bin
