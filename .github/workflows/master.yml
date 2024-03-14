@@ -79,7 +79,7 @@ jobs:
           bash build.sh
 
       - name: Upload
-        uses: softprops/action-gh-release@master
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{env.TAG_NAME}}
           files: |
@@ -98,18 +98,19 @@ jobs:
             u-boot-hi3516ev200/output/u-boot-hi3516ev200-universal.bin
             u-boot-hi3516ev200/output/u-boot-hi3516ev300-universal.bin
             u-boot-hi3516ev200/output/u-boot-hi3518ev300-universal.bin
-            u-boot-ingenic/output/u-boot-t10l-nor.bin
             u-boot-ingenic/output/u-boot-t10-nor.bin
-            u-boot-ingenic/output/u-boot-t20l-nor.bin
+            u-boot-ingenic/output/u-boot-t10l-nor.bin
             u-boot-ingenic/output/u-boot-t20-nor.bin
+            u-boot-ingenic/output/u-boot-t20l-nor.bin
+            u-boot-ingenic/output/u-boot-t20x-nor.bin
             u-boot-ingenic/output/u-boot-t21n-nor.bin
-            u-boot-ingenic/output/u-boot-t30a1-nor.bin
             u-boot-ingenic/output/u-boot-t30a-nor.bin
+            u-boot-ingenic/output/u-boot-t30a1-nor.bin
             u-boot-ingenic/output/u-boot-t30l-nor.bin
             u-boot-ingenic/output/u-boot-t30n-nor.bin
             u-boot-ingenic/output/u-boot-t30x-nor.bin
-            u-boot-ingenic/output/u-boot-t31al-nor.bin
             u-boot-ingenic/output/u-boot-t31a-nor.bin
+            u-boot-ingenic/output/u-boot-t31al-nor.bin
             u-boot-ingenic/output/u-boot-t31l-nor.bin
             u-boot-ingenic/output/u-boot-t31lc-nor.bin
             u-boot-ingenic/output/u-boot-t31n-nor.bin
